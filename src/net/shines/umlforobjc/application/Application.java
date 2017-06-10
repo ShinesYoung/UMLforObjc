@@ -6,6 +6,7 @@ import java.util.Random;
 import net.shines.umlforobjc.gui.MainFrame;
 import net.shines.umlforobjc.model.OCElement;
 import net.shines.umlforobjc.model.object.OCClass;
+import net.shines.umlforobjc.model.object.OCProtocol;
 
 public class Application 
 {
@@ -25,15 +26,27 @@ public class Application
 		
 		ArrayList<OCElement> elements = new ArrayList<OCElement>();
 		
+		OCClass c1 = new OCClass();
+		c1.setName("RootViewController");
+		c1.setCenterX(400);
+		c1.setCenterY(100);
+		c1.setRadius(50);
+		elements.add(c1);
+		
+		
+		OCProtocol aP = new OCProtocol();
+		aP.setName("UITableViewDelegate");
+		aP.setCenterX(500);
+		aP.setCenterY(500);
+		aP.setRadius(50);
+		elements.add(aP);
+		
 		OCClass aClass = new OCClass();
 		aClass.setName("PointsSretachViewController");
-		
-		Random rand = new Random();
-		aClass.setCenterX(200);
-		aClass.setCenterY(200);
+		aClass.setCenterX(100);
+		aClass.setCenterY(100);
 		aClass.setRadius(50);
 		elements.add(aClass);
-		
 		
 		this.mainFrame.paintUML(elements);
 		
