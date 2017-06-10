@@ -2,7 +2,7 @@ package net.shines.umlforobjc;
 
 import net.shines.umlforobjc.application.Application;
 
-public class CodeScannerMainClass 
+public class UmlForObjcMainClass 
 {
 	public static final String scanPath = "/Users/yangshansi/git_space/mobile-client";
 	

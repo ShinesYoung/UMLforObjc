@@ -20,16 +20,22 @@ public class MainFrame extends JFrame
 	public MainFrame()
 	{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setSize(600, 400);
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		int x = (int)(toolkit.getScreenSize().getWidth() -this.getWidth())/2;
-		int y = (int)(toolkit.getScreenSize().getHeight() -this.getHeight())/2;
+		int screenWidth  = (int)toolkit.getScreenSize().getWidth();
+		int screenHeight = (int)toolkit.getScreenSize().getHeight();
+		this.setSize(screenWidth, screenHeight);
+		
+		int x = (int)(screenWidth - this.getWidth())/2;
+		int y = (int)(screenHeight - this.getHeight())/2;
 		this.setLocation(x, y);
 		
 		this.setFont(new Font("Helvetica", Font.PLAIN, 14));
 		this.setBackground(Color.WHITE);
 		this.setTitle("UML");
+		
+		this.setLayout(this.getLayout());
+		this.getContentPane().add(this.getMainPanel());
 		
 	}
 	
@@ -55,8 +61,6 @@ public class MainFrame extends JFrame
 	public void paintUML(List<OCElement> elements)
 	{
 		this.getMainPanel().setElements(elements);
-		
-		this.getContentPane().add(this.getMainPanel());
 	}
 	
 	

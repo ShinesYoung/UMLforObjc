@@ -17,8 +17,6 @@ public class Application
 		{
 			this.mainFrame = new MainFrame();
 		}
-		
-		
 	}
 	
 	public void start()
