@@ -1,5 +1,6 @@
 package net.shines.umlforobjc.model;
 
-public class OCProject {
-
+public class OCProject 
+{
+	private
 }
