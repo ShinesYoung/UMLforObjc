@@ -1,94 +1,63 @@
 package net.shines.umlforobjc.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import net.shines.umlforobjc.model.object.OCClass;
-import net.shines.umlforobjc.model.object.OCProtocol;
-import net.shines.umlforobjc.model.relation.OCImplement;
-import net.shines.umlforobjc.model.relation.OCInherit;
-import net.shines.umlforobjc.model.relation.OCReference;
+import java.util.Map;
 
 public class OCProject 
 {
-	private List<OCClass>    classList;
-	private List<OCProtocol> protocolList;
+	private List<OCElement> elements;
+	private Map<String, OCElement> elementMap;
 	
-	private List<OCImplement> implementList;
-	private List<OCReference> referenceList;
-	private List<OCInherit>   inheritList;
+	private List<OCRelation> relations;
+	private Map<String, OCRelation> relationMap;
 	
 	public OCProject()
 	{
-		this.classList     = new ArrayList<OCClass>();
-		this.protocolList  = new ArrayList<OCProtocol>();
-		this.implementList = new ArrayList<OCImplement>();
+		this.elements  = new ArrayList<OCElement>();
+		this.elementMap = new HashMap<String, OCElement>();
 		
-		this.referenceList = new ArrayList<OCReference>();
-		this.inheritList   = new ArrayList<OCInherit>();
+		this.relations = new ArrayList<OCRelation>();
+		this.relationMap = new HashMap<String, OCRelation>();
 	}
 	
 	public void addElement(OCElement aElement)
 	{
-		if (aElement instanceof OCClass) 
-		{
-			this.classList.add((OCClass)aElement);
+		if (aElement == null) {
+			return;
 		}
-		else if (aElement instanceof OCProtocol) 
-		{
-			this.protocolList.add((OCProtocol)aElement);
+		if (this.relationMap.containsKey(aElement.getName())) {
+			return;
 		}
+		
+		this.elements.add(aElement);
+		this.elementMap.put(aElement.getName(), aElement);
 	}
 	
 	public void addRelation(OCRelation aRelation)
 	{
-		if (aRelation instanceof OCImplement) 
-		{
-			this.implementList.add((OCImplement)aRelation);
+		if (aRelation == null) {
+			return;
 		}
-		else if (aRelation instanceof OCReference) 
-		{
-			this.referenceList.add((OCReference)aRelation);
+		if (aRelation.getFrom() == null || aRelation.getTo() == null) {
+			System.out.println("Relation miss From or To !, name="+aRelation.getName());
+			return;
 		}
-		else if (aRelation instanceof OCInherit) 
-		{
-			this.inheritList.add((OCInherit)aRelation);
-		}
+		
+		this.relations.add(aRelation);
+		this.relationMap.put(aRelation.getName(), aRelation);
+		
+		
+		
 	}
 	
-	public List<OCClass> getClassList() {
-		return classList;
+	public OCElement getElementByName(String name) {
+		return this.elementMap.get(name);
 	}
-	public void setClassList(List<OCClass> classList) {
-		this.classList = classList;
-	}
-
-	public List<OCProtocol> getProtocolList() {
-		return protocolList;
-	}
-	public void setProtocolList(List<OCProtocol> protocolList) {
-		this.protocolList = protocolList;
-	}
-
-	public List<OCImplement> getImplementList() {
-		return implementList;
-	}
-	public void setImplementList(List<OCImplement> implementList) {
-		this.implementList = implementList;
-	}
-
-	public List<OCReference> getReferenceList() {
-		return referenceList;
-	}
-	public void setReferenceList(List<OCReference> referenceList) {
-		this.referenceList = referenceList;
-	}
-
-	public List<OCInherit> getInheritList() {
-		return inheritList;
-	}
-	public void setInheritList(List<OCInherit> inheritList) {
-		this.inheritList = inheritList;
+	
+	public OCRelation getRelationByName(String name) {
+		return this.relationMap.get(name);
 	}
 	
 	

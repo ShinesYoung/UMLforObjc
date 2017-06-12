@@ -1,29 +1,47 @@
 package net.shines.umlforobjc.application;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import net.shines.umlforobjc.gui.MainFrame;
 import net.shines.umlforobjc.model.OCElement;
+import net.shines.umlforobjc.model.OCProject;
 import net.shines.umlforobjc.model.OCRelation;
 import net.shines.umlforobjc.model.object.OCClass;
 import net.shines.umlforobjc.model.object.OCProtocol;
 import net.shines.umlforobjc.model.relation.OCReference;
+import net.shines.umlforobjc.scanner.FileScanner;
+import net.shines.umlforobjc.scanner.PathScanner;
+import net.shines.umlforobjc.scanner.TargetFileFilter;
 
 public class Application 
 {
 	private MainFrame mainFrame;
 	
+	private PathScanner dirScanner;
+	private FileScanner fileScanner;
+	
 	public Application() 
 	{
-		if (this.mainFrame == null) 
-		{
-			this.mainFrame = new MainFrame();
-		}
+		this.mainFrame = new MainFrame();
+		this.dirScanner = new PathScanner(); 
+		this.fileScanner = new FileScanner();
 	}
 	
 	public void start()
 	{
 		this.mainFrame.setVisible(true);
+		
+		File targetPath = new File("/Users/yangshansi/git_space/mobile-client/webApp");
+		List<File> pathList = new ArrayList<File>();
+		this.dirScanner.scanPath(targetPath, pathList, new TargetFileFilter());
+		
+		OCProject aProject = new OCProject();
+		this.fileScanner.scanFiles(pathList, aProject);
+		
+		this.mainFrame.paintProject(aProject);
+		
 		
 		ArrayList<OCElement> elements = new ArrayList<OCElement>();
 		ArrayList<OCRelation> relations = new ArrayList<OCRelation>();

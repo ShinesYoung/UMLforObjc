@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import net.shines.umlforobjc.model.OCElement;
+import net.shines.umlforobjc.model.OCProject;
 import net.shines.umlforobjc.model.OCRelation;
 
 
@@ -67,5 +68,9 @@ public class MainFrame extends JFrame
 		this.getMainPanel().setRelations(relations);
 	}
 	
+	public void paintProject(OCProject aProject)
+	{
+		
+	}
 	
 }

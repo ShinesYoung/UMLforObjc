@@ -1,16 +1,13 @@
-package net.shines.umlforobjc.scanner;
+package net.shines.umlforobjc;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.shines.umlforobjc.FileScanner;
 import net.shines.umlforobjc.output.TextOutputer;
+import net.shines.umlforobjc.scanner.PathScanner;
 import net.shines.umlforobjc.tree.TreeNode;
 
 public class CodeScanner 
@@ -22,7 +19,7 @@ public class CodeScanner
 	private List<TreeNode<String>> rootNodeList;
 	private List<File> largeFileList;
 	
-	private DirectoryScanner dirScanner = null;
+	private PathScanner dirScanner = null;
 	private FileScanner fileScanner = null;
 	private TextOutputer outputer = null;
 	
@@ -36,8 +33,8 @@ public class CodeScanner
 		}
 				
 		this.pathList = new ArrayList<File>();
-		this.dirScanner = new DirectoryScanner();
-		this.dirScanner.scanPath(rootPath, this.pathList);
+		this.dirScanner = new PathScanner();
+		this.dirScanner.scanPath(rootPath, this.pathList, null);
 		
 		System.out.println("Directory scanning over.");
 		
@@ -138,8 +135,8 @@ public class CodeScanner
 		}
 				
 		this.pathList = new ArrayList<File>();
-		this.dirScanner = new DirectoryScanner();
-		this.dirScanner.scanPath(rootPath, this.pathList);
+		this.dirScanner = new PathScanner();
+		this.dirScanner.scanPath(rootPath, this.pathList, null);
 		
 		System.out.println("Directory scanning over.");
 		
