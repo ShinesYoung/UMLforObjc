@@ -1,4 +1,4 @@
-package net.shines.umlforobjc.codescanner;
+package net.shines.umlforobjc.scanner;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.shines.umlforobjc.DirectoryScanner;
 import net.shines.umlforobjc.FileScanner;
 import net.shines.umlforobjc.output.TextOutputer;
 import net.shines.umlforobjc.tree.TreeNode;

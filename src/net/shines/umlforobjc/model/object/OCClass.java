@@ -15,7 +15,6 @@ public class OCClass extends OCElement
 	{
 		if (g instanceof Graphics2D) 
 		{
-			float dash[] = {0.0f};
 			BasicStroke stroke = new BasicStroke(1.0f);
 			((Graphics2D) g).setStroke(stroke);
 		}

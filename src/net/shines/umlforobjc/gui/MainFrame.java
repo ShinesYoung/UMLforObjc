@@ -9,6 +9,9 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import net.shines.umlforobjc.model.OCElement;
+import net.shines.umlforobjc.model.OCRelation;
+
+
 
 public class MainFrame extends JFrame
 {
@@ -58,9 +61,10 @@ public class MainFrame extends JFrame
 		return this.mainPanel;
 	}
 	
-	public void paintUML(List<OCElement> elements)
+	public void paintUML(List<OCElement> elements, List<OCRelation> relations)
 	{
 		this.getMainPanel().setElements(elements);
+		this.getMainPanel().setRelations(relations);
 	}
 	
 	

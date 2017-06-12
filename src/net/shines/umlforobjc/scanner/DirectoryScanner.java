@@ -1,4 +1,4 @@
-package net.shines.umlforobjc;
+package net.shines.umlforobjc.scanner;
 
 import java.io.File;
 import java.util.ArrayList;

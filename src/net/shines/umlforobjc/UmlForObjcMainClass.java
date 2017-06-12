@@ -17,8 +17,7 @@ public class UmlForObjcMainClass
 //		FileOutputer output = new FileOutputer();
 //		output.outputFileList(outputFile, aPathList, PathType.RelativePath, false);
 		
-		Application app = new Application();
-		app.start();
+		
 	}
 
 }
