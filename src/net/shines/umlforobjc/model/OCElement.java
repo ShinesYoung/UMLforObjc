@@ -10,8 +10,8 @@ public abstract class OCElement implements Paintable
 	private int centerY;
 	private int radius;
 	
-	private int inDegree;
-	private int outDegree;
+	private int inDegree = 0;
+	private int outDegree = 0;
 	
 	public String getName() {
 		return name;

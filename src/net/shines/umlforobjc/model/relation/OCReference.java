@@ -46,25 +46,6 @@ public class OCReference extends OCRelation
 	@Override
 	public void drawDirection(Graphics g)
 	{
-		int x = this.getToX();
-		int y = this.getToY();
-		
-		double k = (this.getToX() - this.getFromX()) *1.0 / (this.getToY() - this.getFromY());
-		
-		double d = Math.atan(k);
-		System.out.println("k="+k+", d="+d);
-		
-		double d1 = d + Math.PI/180*10;
-		double d2 = d - Math.PI/180*10;
-		
-		int x1 = x-3;
-		int y1 = y-10;
-		
-		int x2 = x+3;
-		int y2 = y-10;
-		
-		g.drawLine(this.getToX(), this.getToY(), x1, y1);
-		g.drawLine(this.getToX(), this.getToY(), x2, y2);
 	}
 	
 

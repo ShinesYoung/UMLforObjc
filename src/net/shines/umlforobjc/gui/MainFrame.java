@@ -2,11 +2,14 @@ package net.shines.umlforobjc.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import net.shines.umlforobjc.model.OCElement;
 import net.shines.umlforobjc.model.OCProject;
@@ -20,6 +23,7 @@ public class MainFrame extends JFrame
 	
 	private BorderLayout layout;
 	private MainPanel mainPanel;
+	private JScrollPane scrollPane;
 	
 	public MainFrame()
 	{
@@ -28,7 +32,7 @@ public class MainFrame extends JFrame
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		int screenWidth  = (int)toolkit.getScreenSize().getWidth();
 		int screenHeight = (int)toolkit.getScreenSize().getHeight();
-		this.setSize(screenWidth, screenHeight);
+		this.setSize(1000, 1000);
 		
 		int x = (int)(screenWidth - this.getWidth())/2;
 		int y = (int)(screenHeight - this.getHeight())/2;
@@ -39,7 +43,7 @@ public class MainFrame extends JFrame
 		this.setTitle("UML");
 		
 		this.setLayout(this.getLayout());
-		this.getContentPane().add(this.getMainPanel());
+		this.getContentPane().add(this.getScrollPane(), BorderLayout.CENTER);
 		
 	}
 	
@@ -50,6 +54,19 @@ public class MainFrame extends JFrame
 			this.layout = new BorderLayout();
 		}
 		return this.layout;
+	}
+	
+	public JScrollPane getScrollPane()
+	{
+		if (this.scrollPane == null) 
+		{
+			this.scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+											  ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+			this.scrollPane.setViewportView(this.getMainPanel());
+			this.getMainPanel().setPreferredSize(new Dimension(12000, 12000));
+			this.getMainPanel().revalidate();
+		}
+		return this.scrollPane;
 	}
 	
 	public MainPanel getMainPanel()
@@ -70,7 +87,8 @@ public class MainFrame extends JFrame
 	
 	public void paintProject(OCProject aProject)
 	{
-		
+		this.getMainPanel().setElements(aProject.getElements());
+		this.getMainPanel().setRelations(aProject.getRelations());
 	}
 	
 }

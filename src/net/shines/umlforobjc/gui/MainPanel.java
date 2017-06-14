@@ -42,6 +42,9 @@ public class MainPanel extends JPanel
 	{
 		super.paint(g);
 		
+		System.out.println("Elements count:"+this.elements.size());
+		System.out.println("Relations count:"+this.relations.size());
+		
 		for (OCElement aEle : this.elements) 
 		{
 			aEle.paint(g);
