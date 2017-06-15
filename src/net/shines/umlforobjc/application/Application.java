@@ -36,6 +36,9 @@ public class Application
 		ParseContext context = new ParseContext();
 		this.fileParser.parseFiles(pathList, context);
 		
+		System.out.println("Elements count:"+context.elementMap.values().size());
+		System.out.println("Relations count:"+context.relationMap.values().size());
+		
 		OCProject aProject = new OCProject();
 		aProject.config(context);
 		

@@ -63,7 +63,7 @@ public class MainFrame extends JFrame
 			this.scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 											  ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			this.scrollPane.setViewportView(this.getMainPanel());
-			this.getMainPanel().setPreferredSize(new Dimension(12000, 12000));
+			this.getMainPanel().setPreferredSize(new Dimension(330000, 30000));
 			this.getMainPanel().revalidate();
 		}
 		return this.scrollPane;

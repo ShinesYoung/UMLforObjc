@@ -88,6 +88,8 @@ public class ObjcHeaderParser
 					
 					int toInDegree = aRel.getTo().getInDegree();
 					aRel.getTo().setInDegree(toInDegree + 1);
+					
+					aFromEle.addOutElement(aToEle);
 				}
 			}
 			if (aLine.startsWith("@end")) {

@@ -82,6 +82,8 @@ public class ObjcSourceParser
 					
 					context.relationMap.put(refName, aRel);
 					System.out.println("New "+refName);
+					
+					aFromEle.addOutElement(aToEle);
 				}
 			}
 			if (aLine.startsWith("@end")) {

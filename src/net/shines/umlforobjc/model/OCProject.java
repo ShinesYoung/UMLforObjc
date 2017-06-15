@@ -64,19 +64,69 @@ public class OCProject
 		this.relations.clear();
 		this.relations.addAll(context.relationMap.values());
 		
-		for (int row=0; row<50; row++ ) 
+//		for (int row=0; row<50; row++ ) 
+//		{
+//			for (int col=0; col<50; col++) 
+//			{
+//				int eleIndex = row * 50  + col;
+//				if (eleIndex < this.elements.size()) 
+//				{
+//					OCElement aEle = this.elements.get(eleIndex);
+//					aEle.setCenterX(250 + col * 200);
+//					aEle.setCenterY(250 + row * 200);
+//				}
+//			}
+//		}
+		
+		HashMap<String, OCElement> arrivedMap = new HashMap<String, OCElement>();
+		
+		int deep = 0;
+		OCElement appDelegate = this.elementMap.get("AppDelegate");
+		deep = this.setElementsCenter(appDelegate, arrivedMap, deep);
+		
+		for (OCElement aEle : this.elements) 
 		{
-			for (int col=0; col<50; col++) 
-			{
-				int eleIndex = row * 50  + col;
-				if (eleIndex < this.elements.size()) 
-				{
-					OCElement aEle = this.elements.get(eleIndex);
-					aEle.setCenterX(250 + col * 200);
-					aEle.setCenterY(250 + row * 200);
-				}
+			if (arrivedMap.containsKey(aEle.getName()) ==false) {
+				deep = this.setElementsCenter(aEle, arrivedMap, deep);
 			}
 		}
+		
+		System.out.println("deep = "+deep);
+	}
+	
+	public int setElementsCenter(OCElement startEle, Map<String, OCElement> arrivedMap, int deep)
+	{
+		ArrayList<OCElement> currentElementBatch = new ArrayList<OCElement>();
+		currentElementBatch.add(startEle);
+
+		ArrayList<OCElement> nextElementBatch = new ArrayList<OCElement>();
+		
+		while (currentElementBatch.isEmpty() == false)
+		{
+			int offset = 0;
+			for(int index=0; index<currentElementBatch.size(); index ++)
+			{
+				OCElement aEle = currentElementBatch.get(index);
+				
+				if (arrivedMap.containsKey(aEle.getName())) {
+					offset +=1;
+					continue;
+				}
+				
+				aEle.setCenterX(250 + deep* 500);
+				aEle.setCenterY(250 + (index-offset)* 200);
+				arrivedMap.put(aEle.getName(), aEle);
+				
+				nextElementBatch.addAll(aEle.getOutElements());
+			}
+			
+			currentElementBatch.clear();
+			currentElementBatch.addAll(nextElementBatch);
+			nextElementBatch.clear();
+			deep += 1;
+		}
+		
+		return deep;
 	}
 	
 	public OCElement getElementByName(String name) {
